@@ -525,10 +525,15 @@
             setTimeout(() => {
                 tapScreen.style.display = 'none';
             }, 1000);
-            
-            // Note: Due to browser autoplay policies and technical limitations,
-            // background music cannot be automatically played from YouTube URLs.
-            // The audio controls are shown as a demo interface.
+
+            // Try to play the background music
+            backgroundMusic.volume = 0.7;
+            backgroundMusic.play().then(() => {
+                musicStatus.textContent = 'Playing';
+            }).catch(() => {
+                musicStatus.textContent = 'Click to Play';
+            });
+
             audioControls.style.display = 'block';
         });
 
